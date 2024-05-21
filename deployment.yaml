@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: project7-front
+  template:
+    metadata:
+      labels:
+        app: project7-front
+    spec:
+      containers:
+      - name: frontend
+        image: public.ecr.aws/w7f8a1j5/aws-school-project7-cicd-frontend:latest
+        ports:
+        - containerPort: 80
