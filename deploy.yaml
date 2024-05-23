@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: nextjs-container
-    image: codingalice/aws-wiki-front:2.0
+    image: codingalice/aws-wiki-frontend:1.0
     ports:
     - containerPort: 3000
     env:
