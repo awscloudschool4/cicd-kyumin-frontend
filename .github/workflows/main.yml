@@ -30,7 +30,7 @@ jobs:
       - name: Determine frontend image version
         id: frontend-version
         run: |
-          CURRENT_VERSION=$(grep -oP 'codingalice/aws-wiki-frontend:\K[0-9]+\.[0-9]+' deploy.yaml)
+          CURRENT_VERSION=$(grep -oP 'codingalice/aws-wiki-frontend:\K[0-9]+\.[0-9]+' manifest/deploy.yaml)
           if [ -z "$CURRENT_VERSION" ]; then
             CURRENT_VERSION=1.0
           fi
@@ -50,11 +50,11 @@ jobs:
           docker push codingalice/aws-wiki-frontend:${{ env.NEW_VERSION }}
       - name: Update frontend.yaml
         run: |
-          sed -i 's|image: codingalice/aws-wiki-frontend:.*|image: codingalice/aws-wiki-frontend:${{ env.NEW_VERSION }}|' deploy.yaml
+          sed -i 's|image: codingalice/aws-wiki-frontend:.*|image: codingalice/aws-wiki-frontend:${{ env.NEW_VERSION }}|' manifest/deploy.yaml
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add deploy.yaml
+          git add manifest/deploy.yaml
           git commit -m "Update Docker images in manifest files with ${{ env.NEW_VERSION }}"
           git push origin develop
