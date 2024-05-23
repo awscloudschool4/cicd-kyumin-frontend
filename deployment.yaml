@@ -16,7 +16,6 @@ spec:
       - name: frontend
         image: public.ecr.aws/w7f8a1j5/aws-school-project7-cicd-aws-repo-frontend-latest:latest
         imagePullPolicy: "Always"
-        command: ["yarn", "start"]
         ports:
         - containerPort: 80
         env:
