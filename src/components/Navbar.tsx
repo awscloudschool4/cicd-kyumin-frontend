@@ -35,7 +35,7 @@ const Navigation = () => {
           />
           <NavbarBrand>
             <Link href="/">
-              <p className="font-bold text-xl">AWESOME WIKI</p>
+              <p className="font-bold text-xl">AWESOME WIKI By 3조 </p>
             </Link>
           </NavbarBrand>
         </NavbarContent>
