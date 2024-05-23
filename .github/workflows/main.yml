@@ -55,6 +55,6 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add manifest/front/frontend.yaml manifest/back/backend.yaml
+          git add deploy.yaml
           git commit -m "Update Docker images in manifest files with ${{ env.NEW_VERSION }}"
           git push origin develop
