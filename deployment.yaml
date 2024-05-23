@@ -17,3 +17,6 @@ spec:
         image: public.ecr.aws/w7f8a1j5/aws-school-project7-cicd-aws-repo-frontend-latest:latest
         ports:
         - containerPort: 80
+        env:
+        - name: API_URL
+          value: http://my-django-svc.default.svc.cluster.local:8000
