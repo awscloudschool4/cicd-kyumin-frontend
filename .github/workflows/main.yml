@@ -36,7 +36,7 @@ jobs:
           fi
           MAJOR_VERSION=$(echo $CURRENT_VERSION | cut -d '.' -f 1)
           MINOR_VERSION=$(echo $CURRENT_VERSION | cut -d '.' -f 2)
-          if echo "${{ github.event.head_commit.message }}" | grep -q 'Release frontend'; then
+          if echo "${{ github.event.head_commit.message }}" | grep -q 'release'; then
             MAJOR_VERSION=$(echo "$MAJOR_VERSION + 1" | bc)
             MINOR_VERSION=0
             echo "IS_RELEASE=true" >> $GITHUB_ENV
