@@ -57,4 +57,7 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add manifest/deploy.yaml
           git commit -m "Update Docker images in manifest files with ${{ env.NEW_VERSION }}"
+          if echo "${{ github.event.head_commit.message }}" | grep -q 'Release frontend'; then
+            git tag -a "v${{ env.NEW_VERSION }}" -m "Release version ${{ env.NEW_VERSION }}"
+          fi
           git push origin develop
