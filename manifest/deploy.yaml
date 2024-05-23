@@ -23,6 +23,7 @@ spec:
   ports:
   - port: 3000
     targetPort: 3000
+    nodePort: 31313
   selector:
     app: front
 
