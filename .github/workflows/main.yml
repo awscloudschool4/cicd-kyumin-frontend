@@ -51,14 +51,25 @@ jobs:
       - name: Update frontend.yaml
         run: |
           sed -i 's|image: codingalice/aws-wiki-frontend:.*|image: codingalice/aws-wiki-frontend:${{ env.NEW_VERSION }}|' manifest/deploy.yaml
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "v${{ env.NEW_VERSION }}"
+          release_name: "v${{ env.NEW_VERSION }}"
+          body: |
+            Changes in this Release
+            - Update to v${{ env.NEW_VERSION }}
+          draft: false
+          prerelease: false
+      
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add manifest/deploy.yaml
           git commit -m "Update Docker images in manifest files with ${{ env.NEW_VERSION }}"
-          if echo "${{ github.event.head_commit.message }}" | grep -q 'Release frontend'; then
-            git tag -a "v${{ env.NEW_VERSION }}" -m "Release version ${{ env.NEW_VERSION }}"
-            git push origin "v${{ env.NEW_VERSION }}"
-          fi
           git push origin develop
+      
